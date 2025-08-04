@@ -1,4 +1,4 @@
-from openai import OpenAI, OpenAIError
+from openai import OpenAI, OpenAIError, RateLimitError
 from dotenv import load_dotenv
 import os
 from flask import Flask, request, jsonify
@@ -34,6 +34,11 @@ def ask():
         reply = response["choices"][0]["message"]["content"]
         return jsonify({"reply": reply})
     except RateLimitError:
+        return jsonify({"error": "Rate limit exceeded, please waite and try again"}), 429
+    except OpenAIError as e:
+        return jsonify({"error": f"OpenAI error: {str(e)}"}), 500
+    except Exception as e:
+        return jsonify({"error": f"Unexpected error: {str(e)}"}), 500
 
     
 
