@@ -26,13 +26,18 @@ def ask():
 
 
     try:
-        response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": value}]
-        )
+        # response = client.chat.completions.create(
+        # model="gpt-3.5-turbo",
+        # messages=[{"role": "user", "content": value}]
+        # )
 
-        reply = response["choices"][0]["message"]["content"]
-        return jsonify({"reply": reply})
+        
+
+       # reply = response["choices"][0]["message"]["content"]
+        #return jsonify({"reply": reply})
+
+        #Temporary fix (pay for OpenAi API tommorrow)
+        return jsonify({"reply": f"(This is simulated) You said: '{value}'"}), 200
     except RateLimitError:
         return jsonify({"error": "Rate limit exceeded, please waite and try again"}), 429
     except OpenAIError as e:
