@@ -1,0 +1,21 @@
+/* static/style.css */
+body {
+  font-family: sans-serif;
+  padding: 40px;
+  background: #f5f5f5;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+textarea {
+  width: 100%;
+  height: 100px;
+}
+#response-box {
+  margin-top: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}

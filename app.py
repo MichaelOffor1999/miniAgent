@@ -1,7 +1,7 @@
 from openai import OpenAI, OpenAIError, RateLimitError
 from dotenv import load_dotenv
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 
 load_dotenv()
@@ -11,6 +11,10 @@ OPENAI_API_KEY  = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
 client = OpenAI(api_key=OPENAI_API_KEY)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 @app.route("/ask", methods=["POST"])
 def ask():
